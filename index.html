@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Berita & Informasi Terkini</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #0f172a;
+            --accent: #e11d48;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            font-size: 0.825rem;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid var(--border);
+            padding: 20px 0 10px 0;
+        }
+
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .site-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .site-title span {
+            color: var(--accent);
+        }
+
+        .site-tagline {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
+        nav {
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        /* Main Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin: 28px auto;
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Featured News (Highlight to Resume) */
+        .featured-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .badge-special {
+            background-color: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-img-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .card-title a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .card-title a:hover {
+            color: var(--accent);
+        }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .card-snippet {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* News Grid (Secondary news) */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 580px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .news-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 16px;
+        }
+
+        .news-item h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .news-item h3 a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .news-item h3 a:hover {
+            color: var(--accent);
+        }
+
+        /* Sidebar */
+        .sidebar-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            margin-bottom: 14px;
+            color: var(--primary-dark);
+        }
+
+        .trending-list {
+            list-style: none;
+        }
+
+        .trending-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .trending-list li:last-child {
+            border-bottom: none;
+        }
+
+        .trending-list a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .trending-list a:hover {
+            color: var(--accent);
+        }
+
+        /* Quick Profile Card in Sidebar */
+        .profile-widget {
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #94a3b8;
+            padding: 28px 0;
+            margin-top: 40px;
+            font-size: 0.875rem;
+            text-align: center;
+            border-top: 3px solid var(--accent);
+        }
+
+        footer a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+            <span>Edisi Terkini • Portal Informasi Digital</span>
+            <span>irfanaseli.gamer.gd</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="brand-header">
+                <div>
+                    <a href="http://irfanaseli.gamer.gd/" class="site-title">Landing<span>Page</span></a>
+                    <div class="site-tagline">Placeholder Slogan</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="http://irfanaseli.gamer.gd/" class="active">Beranda</a></li>
+                    <li><a href="http://irfanaseli.gamer.gd/resume">Profil & Resume</a></li>
+                    <li><a href="#">Asset1</a></li>
+                    <li><a href="#">Asset2</a></li>
+                    <li><a href="#">Asset3</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="layout">
+            
+            <!-- Left Column: News Content -->
+            <main>
+                <!-- Highlight Article: Points to /resume -->
+                <article class="featured-card">
+                    <div class="card-img-placeholder">
+                        📰: Profil & Portofolio
+                    </div>
+                    <div class="card-content">
+                        <span class="badge-special">Resume</span>
+                        <h2 class="card-title">
+                            <a href="http://irfanaseli.gamer.gd/resume">Profil Lengkap & Resume Profesional Resmi Dirilis</a>
+                        </h2>
+                        <div class="card-meta">Ditulis oleh Redaksi • Baru saja diperbarui • Kategori: Profil</div>
+                        <p class="card-snippet">
+                            Placeholder Caption resume 1.
+                        </p>
+                        <a href="http://irfanaseli.gamer.gd/resume" class="read-more-btn">Buka Resume Lengkap &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Secondary News Section -->
+                <h3 style="margin-bottom: 14px; font-size: 1.2rem; color: var(--primary-dark);">Kabar Terbaru Lainnya</h3>
+                <div class="news-grid">
+                    <div class="news-item">
+                        <span style="font-size: 0.75rem; color: var(--accent); font-weight: bold;">TEKNOLOGI</span>
+                        <h3><a href="#">Placeholder 1a</a></h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Placeholder 1b.</p>
+                    </div>
+                    <div class="news-item">
+                        <span style="font-size: 0.75rem; color: var(--accent); font-weight: bold;">HARDWARE</span>
+                        <h3><a href="#">Placeholder 2A</a></h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Placeholder 2b.</p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Column: Sidebar -->
+            <aside>
+                <!-- Quick Author / Profile Widget -->
+                <div class="sidebar-section profile-widget">
+                    <div class="profile-avatar">👨‍💻</div>
+                    <h4 style="font-size: 1.05rem; margin-bottom: 4px;">Tentang Penulis</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+                        Placeholder About Me.
+                    </p>
+                    <a href="http://irfanaseli.gamer.gd/resume" class="read-more-btn" style="width: 100%; display: block; padding: 6px 0;">Lihat CV / Resume</a>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="sidebar-section">
+                    <h4 class="sidebar-title">Topik Populer</h4>
+                    <ul class="trending-list">
+                        <li><a href="http://irfanaseli.gamer.gd/resume">📌 Placeholder 3A</a></li>
+                        <li><a href="#">🌐 Placeholder 4A</a></li>
+                        <li><a href="#">⚡ Placeholder 4B</a></li>
+                        <li><a href="#">🎮 Placeholder 4A</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Irfan Daily</strong> - Seluruh Hak Cipta Dilindungi.</p>
+            <p style="margin-top: 6px;">
+                <a href="http://irfanaseli.gamer.gd/">Beranda</a> • 
+                <a href="http://irfanaseli.gamer.gd/resume">Resume</a> • 
+                <a href="#">Kontak</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
