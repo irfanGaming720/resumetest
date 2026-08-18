@@ -28,13 +28,13 @@
     <header class="d-print-none">
       <div class="container text-center text-lg-left">
         <div class="py-3 clearfix">
-          <h1 class="site-title mb-0">Resume GW</h1>
+          <h1 class="site-title mb-0">My Resume</h1>
           <div class="site-nav">
             <nav role="navigation">
               <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/templateflip" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
+                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/irfanaseli._010" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/templateflip" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/irfanGaming720" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
                 </li>
               </ul>
             </nav>
@@ -51,9 +51,12 @@
         <div class="avatar hover-effect bg-white shadow-sm p-1"><img src="images/avatar.jpg" width="200" height="200"/></div>
       </div>
       <div class="col-lg-8 col-md-7 text-center text-md-start">
-        <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Irfan webdep</h2>
+        <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Muhammad Farraz Irfan Efendi</h2>
         <p data-aos="fade-left" data-aos-delay="100">Graphic Designer & Web Developer</p>
-        <div class="d-print-none" data-aos="fade-left" data-aos-delay="200"><a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="right-resume.pdf" target="_blank">Download CV</a><a class="btn btn-success shadow-sm mt-1" href="#contact">Hire Me</a></div>
+        <div class="d-print-none" data-aos="fade-left" data-aos-delay="200">
+          <a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="#" onclick="window.print(); return false;">Download CV</a>
+          <a class="btn btn-success shadow-sm mt-1" href="mailto:irfangg2020@gmail.com?subject=Penawaran%20Kerjasama%20%2F%20Project&amp;body=Halo%20Irfan%2C%20salam%20kenal.%0A%0ASaya%20tertarik%20dengan%20profil%20dan%20portofolio%20kamu%20di%20http%3A%2F%2Firfanaseli.gamer.gd.%20Boleh%20kita%20diskusi%20lebih%20lanjut%20mengenai%20potensi%20project%20atau%20kerja%20sama%3F%0A%0ATerima%20kasih!">Hire Me</a>
+        </div>
       </div>
     </div>
   </div>
@@ -189,36 +192,71 @@
       </div>
     </div>
   </div>
-  <hr class="d-print-none"/>
-  <div class="contant-section px-3 px-lg-4 pb-4" id="contact">
-    <h2 class="h3 text mb-3">Contact</h2>
-    <div class="row">
-      <div class="col-md-7 d-print-none">
-        <div class="my-2"><form action="https://formspree.io/your@email.com"
-    method="POST">
+<hr class="d-print-none"/>
+<div class="contant-section px-3 px-lg-4 pb-4" id="contact">
+  <h2 class="h3 text mb-3">Contact</h2>
   <div class="row">
-    <div class="col-6">
-      <input class="form-control" type="text" id="name" name="name" placeholder="Your Name" required>
+    <!-- Kolom Formulir WA -->
+    <div class="col-md-7 d-print-none">
+      <div class="my-2">
+        <form onsubmit="sendToWA(event)">
+          <div class="row">
+            <div class="col-12">
+              <input class="form-control" type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+          </div>
+          <div class="form-group my-2">
+            <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+          <button class="btn btn-primary mt-2" type="submit">Send</button>
+        </form>
+      </div>
     </div>
-    <div class="col-6">
-      <input class="form-control" type="email" id="email" name="_replyto" placeholder="Your E-mail" required>
+
+    <!-- Kolom Informasi Kontak -->
+    <div class="col-md-5">
+      <div class="mt-1">
+        <div class="mt-2">
+          <h3 class="h6 mb-1">Address</h3>
+          <p class="text-muted">Depok, Jawa Barat</p>
+        </div>
+        <div class="mt-2">
+          <h3 class="h6 mb-1">Phone</h3>
+          <p class="text-muted">+62822-8877-2817</p>
+        </div>
+        <div class="mt-2">
+          <h3 class="h6 mb-1">Email</h3>
+          <p class="text-muted">irfangg2020@gmail.com</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group my-2">
-    <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4"  placeholder="Your Message" required></textarea>
-  </div>
-  <button class="btn btn-primary mt-2" type="submit">Send</button>
-</form>
+</div>
+
+<script>
+function sendToWA(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const message = document.getElementById('message').value;
+  const phoneNumber = '6282288772817';
+  
+  const text = `salam kenal bro,nama saya ${name}\n\nbtw, ${message}`;
+  const encodedText = encodeURIComponent(text);
+  
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, '_blank');
+}
+</script>
         </div>
       </div>
       <div class="col">
         <div class="mt-2">
-          <h3 class="h6">Address</h3>
-          <div class="pb-2 text-secondary">Depok,Jawa Barat</div>
-          <h3 class="h6">Phone</h3>
-          <div class="pb-2 text-secondary">+62822-8877-2817</div>
-          <h3 class="h6">Email</h3>
-          <div class="pb-2 text-secondary">irfangg2020@gmail.com</div>
+          <h3 class="h6"></h3>
+          <div class="pb-2 text-secondary"></div>
+          <h3 class="h6"></h3>
+          <div class="pb-2 text-secondary"></div>
+          <h3 class="h6"></h3>
+          <div class="pb-2 text-secondary"></div>
         </div>
       </div>
       <div class="col d-none d-print-block">
@@ -242,7 +280,6 @@
     <footer class="pt-4 pb-4 text-muted text-center d-print-none">
       <div class="container">
         <div class="my-3">
-          <div class="h4">Joyce Harrison</div>
           <div class="footer-nav">
             <nav role="navigation">
               <ul class="nav justify-content-center">
